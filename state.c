@@ -176,10 +176,10 @@ int are_same(const state_t* lhs, const state_t* rhs)
 		&& lhs->C.rem == rhs->C.rem;
 }
 
-int is_valid(const state_t* ptr_state)
+int is_valid(const state_t* ptr_state, int total)
 {
 	if (ptr_state->fn_index >= 6 || ptr_state->A.rem > ptr_state->A.lim || ptr_state->B.rem > ptr_state->B.lim || ptr_state->C.rem > ptr_state->C.lim ||
-		ptr_state->A.rem < 0 || ptr_state->B.rem < 0 || ptr_state->C.rem < 0 )//|| (ptr_state->A.rem + ptr_state->B.rem + ptr_state->C.rem) != 8)
+		ptr_state->A.rem < 0 || ptr_state->B.rem < 0 || ptr_state->C.rem < 0 || (ptr_state->A.rem + ptr_state->B.rem + ptr_state->C.rem) != total)
 		return 0;
 	return 1;
 }

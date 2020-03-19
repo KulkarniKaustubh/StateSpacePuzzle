@@ -2,8 +2,6 @@
 #include "list.h"
 
 #define DEBUG 1
-
-
 int main()
 {
 	state_t start;
@@ -30,6 +28,8 @@ int main()
 	scanf ("%d", &fin_rem2);
 	scanf ("%d", &fin_rem3);
 
+	int total = init_rem1 + init_rem2 + init_rem3;
+
 	set_state(&start, lim1, lim2, lim3, init_rem1, init_rem2, init_rem3);
 	set_state(&goal, lim1, lim2, lim3, fin_rem1, fin_rem2, fin_rem3);
 	// disp_state (&start);
@@ -52,11 +52,14 @@ int main()
 			// printf("trying transition %d on\n", fn_index);
 			// disp_state(&mylist.tail->st);
 		}
-		if ( fn_index <= 5 ) move[fn_index](&mylist.tail->st, &temp);
+		if ( fn_index <= 5 ) {
+			// set_state (&temp, lim1, lim2, lim3, 0, 0, 0);
+			move[fn_index](&mylist.tail->st, &temp);
+		}
 		// printf ("Temporary print \n");
 		// disp_state (&temp);
 		// printf ("%d and %d\n",temp.fn_index, fn_index);
-		if( is_valid (&mylist.tail->st) && is_valid(&temp) && ! is_repeated(&mylist, &temp))
+		if( is_valid (&mylist.tail->st, total) && is_valid(&temp, total) && ! is_repeated(&mylist, &temp))
 		{
 			if(DEBUG)
 			{
@@ -96,6 +99,7 @@ int main()
 			printf ("\n");
 			is_soln = 0;
 			remove_at_end (&mylist);
+			set_state (&temp, lim1, lim2, lim3, mylist.tail->st.A.rem, mylist.tail->st.B.rem, mylist.tail->st.C.rem);
 			++mylist.tail->st.fn_index;
 		}
 		if (done == 1) break;

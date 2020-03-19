@@ -30,5 +30,5 @@ void moveCA(const state_t* src, state_t *dst);
 void moveCB(const state_t* src, state_t *dst);
 
 int are_same(const state_t* lhs, const state_t* rhs);
-int is_valid(const state_t* ptr_state);
+int is_valid(const state_t* ptr_state, int total);
 #endif
