@@ -1,2 +1,4 @@
 # Fine_Techniques_Assignment_3
-Fine Techniques Special Topic Assignment 3 -- State Space Puzzle
+State Space Puzzle
+Finding all solutions from an inital state of three mugs to the final state of three mugs.
+Backtracking is used to get all the solutions.
